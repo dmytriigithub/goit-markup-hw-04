@@ -50,6 +50,7 @@ main {
 
 .header {
     border-bottom: 1px solid #e7e9fc; 
+    box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08); 
 }
 
 
@@ -82,16 +83,22 @@ main {
     color: #2e2f42;
 }
 
-.nav_list {
+.header_list {
     display: flex;
     gap: 40px;
 }
 
-.nav_list-item {
+.header_list-item {
     padding: 24px 0;
 }
 
-.nav_list-item-link {
+.header_list-item:first-child {
+    position: relative;
+    color: #404bbf; 
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header_list-item-link {
     padding: 24px 0;
     font-weight: 500;
     font-size: 16px;
@@ -100,25 +107,21 @@ main {
     color: #2e2f42; 
 }
 
-.nav_list-item-link:hover,
-.nav_list-item-link:focus {
+.header_list-item-link:hover,
+.header_list-item-link:focus {
     color: #404bbf;
 }
 
-.nav_list-item-link:hover::after,
-.nav_list-item-link:focus::after {
-    transform: scaleX(1);
-}
-
-.nav_list-item-link::after {
+.header_list-item:first-child .header_list-item-link::after {
+    position: absolute;
     content: "";
+    left: 0;
+    bottom: -1px;
     display: block;
     border-radius: 2px;
     width: 100%;
     height: 4px;
     background-color: #404bbf;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
   }
 
 
@@ -129,20 +132,16 @@ main {
     font-style: normal;
 }
 
-.contacts_list {
-    display: flex;
-    gap: 40px;
-}
-
-.contact {
+.header_list-item-contact {
     font-size: 16px;
     line-height: 150%;
     letter-spacing: 0.02em;
     color: #434455;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.contact:hover,
-.contact:focus {
+.header_list-item-contact:hover,
+.header_list-item-contact:focus {
     color: #404bbf;
 }
 
@@ -150,6 +149,7 @@ main {
 
 .promo {
     padding: 188px 0;
+    max-width: 1440px;
     background-image:linear-gradient(
         to bottom, 
         rgba(46, 47, 66, 0.7), 
@@ -158,8 +158,7 @@ main {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-
-    /* background: rgba(46, 47, 66, 0.7); */
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
@@ -254,10 +253,7 @@ main {
     background: #f4f4fd;
 }
 
-.features-icon {
-    width: 64px;
-    height: 64px;
-}
+
 
 /* our team section  */
 
@@ -320,23 +316,27 @@ main {
 }
 
 .team_card-icon_list-item {
+    width: 40px;
+    height: 40px;
+}
+
+.team_card-icon_list-item-link {
+    width: 100%;
+    height: 100%;
+    background-color: #4d5ae5;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background-color: #4d5ae5;
+    transition:background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.team_card-icon_list-item:hover,
-.team_card-icon_list-item:focus {
+.team_card-icon_list-item-link:hover,
+.team_card-icon_list-item-link:focus {
     background: #404bbf;
 }
 
 .team_card-icon {
-    width: 16px;
-    height: 16px;
     fill: #f4f4fd;
 }
 
@@ -359,7 +359,13 @@ main {
 .portfolio_card-list-item {
     width: calc((100% - 48px) / 3);
     background: #fff;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.portfolio_card-list-item:hover {
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
 
 .portfolio_card-name {
     margin-bottom: 8px;
@@ -381,33 +387,29 @@ main {
 .portfolio_card-overlay_box {
     position: relative;
     overflow: hidden;
+    
 }
 
+.portfolio_card-list-item:hover .portfolio_card-overlay-text {
+    transform: translateY(0%);
+}
+
+
 .portfolio_card-overlay-text {
-    margin: 40px 32px 32px;
+    position: absolute;
+    top: 0;
+    padding: 40px 32px;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
     letter-spacing: 0.02em;
     color: #f4f4fd;
-}
-
-.portfolio_card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+    background-color: #3f51b5;
     width: 100%;
     height: 100%;
-    background-color: #3f51b5;
-  
-    transform: translatey(100%);
-    transition: transform 250ms ease-in-out;
-  }
-  
-  .portfolio_card-list-item:hover .portfolio_card-overlay {
-    transform: translatey(0);
-  }
-
+    transform: translateY(100%);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 /* footer  */
 
@@ -416,8 +418,9 @@ main {
     background: #2e2f42;
 }
 
-.footer-wrapper {
+.footer .container {
     display: flex;
+    align-items: baseline;
     gap: 120px;
 }
 
