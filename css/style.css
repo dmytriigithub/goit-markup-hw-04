@@ -88,10 +88,6 @@ main {
     gap: 40px;
 }
 
-.header_list-item {
-    padding: 24px 0;
-}
-
 .header_list-item:first-child .header_list-item-link{
     position: relative;
     color: #404bbf; 
@@ -99,6 +95,7 @@ main {
 }
 
 .header_list-item-link {
+    display: block;
     padding: 24px 0;
     font-weight: 500;
     font-size: 16px;
@@ -133,6 +130,8 @@ main {
 }
 
 .header_list-item-contact {
+    display: block;
+    padding: 24px 0;
     font-size: 16px;
     line-height: 150%;
     letter-spacing: 0.02em;
